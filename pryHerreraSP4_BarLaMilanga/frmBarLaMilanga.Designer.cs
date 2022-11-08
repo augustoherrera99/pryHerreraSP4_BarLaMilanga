@@ -40,9 +40,12 @@
             this.btnTotales = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.mrcConsultas = new System.Windows.Forms.GroupBox();
+            this.btnLimpiarConsulta = new System.Windows.Forms.Button();
             this.lblResultado = new System.Windows.Forms.Label();
             this.lstResultado = new System.Windows.Forms.ListBox();
             this.lblVentas = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.btnLimpiarGrilla = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrillaVentas)).BeginInit();
             this.mrcConsultas.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +53,7 @@
             // dgvGrillaVentas
             // 
             this.dgvGrillaVentas.AllowUserToAddRows = false;
+            this.dgvGrillaVentas.AllowUserToDeleteRows = false;
             this.dgvGrillaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrillaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -69,6 +73,7 @@
             // 
             this.Column1.HeaderText = "Mozos";
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Column2
             // 
@@ -94,7 +99,7 @@
             // 
             // btnValidarDatos
             // 
-            this.btnValidarDatos.Location = new System.Drawing.Point(498, 185);
+            this.btnValidarDatos.Location = new System.Drawing.Point(599, 61);
             this.btnValidarDatos.Name = "btnValidarDatos";
             this.btnValidarDatos.Size = new System.Drawing.Size(78, 36);
             this.btnValidarDatos.TabIndex = 1;
@@ -104,7 +109,7 @@
             // 
             // btnMozoDelDia
             // 
-            this.btnMozoDelDia.Location = new System.Drawing.Point(44, 54);
+            this.btnMozoDelDia.Location = new System.Drawing.Point(23, 55);
             this.btnMozoDelDia.Name = "btnMozoDelDia";
             this.btnMozoDelDia.Size = new System.Drawing.Size(75, 40);
             this.btnMozoDelDia.TabIndex = 2;
@@ -114,40 +119,53 @@
             // 
             // btnTotales
             // 
-            this.btnTotales.Location = new System.Drawing.Point(44, 109);
+            this.btnTotales.Location = new System.Drawing.Point(23, 111);
             this.btnTotales.Name = "btnTotales";
             this.btnTotales.Size = new System.Drawing.Size(75, 34);
             this.btnTotales.TabIndex = 3;
             this.btnTotales.Text = "Totales";
             this.btnTotales.UseVisualStyleBackColor = true;
+            this.btnTotales.Click += new System.EventHandler(this.btnTotales_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(498, 388);
+            this.btnSalir.Location = new System.Drawing.Point(599, 350);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(78, 32);
             this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "&Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // mrcConsultas
             // 
+            this.mrcConsultas.Controls.Add(this.btnLimpiarConsulta);
             this.mrcConsultas.Controls.Add(this.lblResultado);
             this.mrcConsultas.Controls.Add(this.lstResultado);
             this.mrcConsultas.Controls.Add(this.btnMozoDelDia);
             this.mrcConsultas.Controls.Add(this.btnTotales);
             this.mrcConsultas.Enabled = false;
-            this.mrcConsultas.Location = new System.Drawing.Point(13, 185);
+            this.mrcConsultas.Location = new System.Drawing.Point(13, 180);
             this.mrcConsultas.Name = "mrcConsultas";
-            this.mrcConsultas.Size = new System.Drawing.Size(451, 188);
+            this.mrcConsultas.Size = new System.Drawing.Size(564, 202);
             this.mrcConsultas.TabIndex = 5;
             this.mrcConsultas.TabStop = false;
             this.mrcConsultas.Text = "Consultas";
             // 
+            // btnLimpiarConsulta
+            // 
+            this.btnLimpiarConsulta.Location = new System.Drawing.Point(471, 152);
+            this.btnLimpiarConsulta.Name = "btnLimpiarConsulta";
+            this.btnLimpiarConsulta.Size = new System.Drawing.Size(75, 34);
+            this.btnLimpiarConsulta.TabIndex = 6;
+            this.btnLimpiarConsulta.Text = "Limpiar";
+            this.btnLimpiarConsulta.UseVisualStyleBackColor = true;
+            this.btnLimpiarConsulta.Click += new System.EventHandler(this.btnLimpiarConsulta_Click);
+            // 
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
-            this.lblResultado.Location = new System.Drawing.Point(188, 29);
+            this.lblResultado.Location = new System.Drawing.Point(121, 30);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(55, 13);
             this.lblResultado.TabIndex = 5;
@@ -156,9 +174,9 @@
             // lstResultado
             // 
             this.lstResultado.FormattingEnabled = true;
-            this.lstResultado.Location = new System.Drawing.Point(191, 45);
+            this.lstResultado.Location = new System.Drawing.Point(124, 46);
             this.lstResultado.Name = "lstResultado";
-            this.lstResultado.Size = new System.Drawing.Size(200, 108);
+            this.lstResultado.Size = new System.Drawing.Size(328, 108);
             this.lstResultado.TabIndex = 4;
             // 
             // lblVentas
@@ -170,11 +188,33 @@
             this.lblVentas.TabIndex = 6;
             this.lblVentas.Text = "Grilla de ventas";
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(599, 112);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(78, 36);
+            this.btnTest.TabIndex = 7;
+            this.btnTest.Text = "Llenar grilla";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // btnLimpiarGrilla
+            // 
+            this.btnLimpiarGrilla.Location = new System.Drawing.Point(599, 303);
+            this.btnLimpiarGrilla.Name = "btnLimpiarGrilla";
+            this.btnLimpiarGrilla.Size = new System.Drawing.Size(78, 32);
+            this.btnLimpiarGrilla.TabIndex = 8;
+            this.btnLimpiarGrilla.Text = "Borrar datos";
+            this.btnLimpiarGrilla.UseVisualStyleBackColor = true;
+            this.btnLimpiarGrilla.Click += new System.EventHandler(this.btnLimpiarGrilla_Click);
+            // 
             // frmBarLaMilanga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 430);
+            this.ClientSize = new System.Drawing.Size(694, 394);
+            this.Controls.Add(this.btnLimpiarGrilla);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.lblVentas);
             this.Controls.Add(this.mrcConsultas);
             this.Controls.Add(this.btnSalir);
@@ -197,11 +237,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvGrillaVentas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button btnValidarDatos;
         private System.Windows.Forms.Button btnMozoDelDia;
         private System.Windows.Forms.Button btnTotales;
@@ -210,6 +245,14 @@
         private System.Windows.Forms.Label lblResultado;
         private System.Windows.Forms.ListBox lstResultado;
         private System.Windows.Forms.Label lblVentas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnLimpiarConsulta;
+        private System.Windows.Forms.Button btnLimpiarGrilla;
     }
 }
 

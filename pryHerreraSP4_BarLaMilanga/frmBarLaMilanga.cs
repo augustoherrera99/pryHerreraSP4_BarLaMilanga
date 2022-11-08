@@ -20,8 +20,8 @@ namespace pryHerreraSP4_BarLaMilanga
         float[,] Ventas = new float[5, 4];
         public struct DATOS
         {
-            public int mozos;
-            public int ventas;
+            public string mozo;
+            public float ventasTotales;
         }
         
         private void frmBarLaMilanga_Load(object sender, EventArgs e)
@@ -41,7 +41,8 @@ namespace pryHerreraSP4_BarLaMilanga
 
         private void btnValidarDatos_Click(object sender, EventArgs e)
         {
-            
+            dgvGrillaVentas.ClearSelection();
+
             for (int i = 0; i < dgvGrillaVentas.RowCount; i++)
             {
                 if (dgvGrillaVentas.Rows[i].Cells[1].Value == null || dgvGrillaVentas.Rows[i].Cells[2].Value == null || 
@@ -92,55 +93,161 @@ namespace pryHerreraSP4_BarLaMilanga
 
         private void btnMozoDelDia_Click(object sender, EventArgs e)
         {
-            float Julio = 0;
+            DATOS[] MozoDelDia = new DATOS[5];
+            float mayorVentas = float.MinValue;
+            string mozoMayorVentas = "";
+
             for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
             {
-                Julio += Ventas[0, columna];
+                MozoDelDia[0].ventasTotales += Ventas[0, columna];
+                MozoDelDia[0].mozo = dgvGrillaVentas.Rows[0].Cells[0].Value.ToString();
+            }
+
+            for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
+            {
+                MozoDelDia[1].ventasTotales += Ventas[1, columna];
+                MozoDelDia[1].mozo = dgvGrillaVentas.Rows[1].Cells[0].Value.ToString();
             }
             
-
-            float Esteban = 0;
             for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
             {
-                Esteban += Ventas[1, columna];
+                MozoDelDia[2].ventasTotales += Ventas[2, columna];
+                MozoDelDia[2].mozo = dgvGrillaVentas.Rows[2].Cells[0].Value.ToString();
             }
             
-
-            float Javier = 0;
             for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
             {
-                Javier += Ventas[2, columna];
-            }
-            
-
-            float Gonzalo = 0;
-            for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
-            {
-                Gonzalo += Ventas[3, columna];
+                MozoDelDia[3].ventasTotales += Ventas[3, columna];
+                MozoDelDia[3].mozo = dgvGrillaVentas.Rows[3].Cells[0].Value.ToString();
             }
            
-
-            float Alberto = 0;
             for (int columna = 0; columna <= Ventas.GetUpperBound(1); columna++)
             {
-                Alberto += Ventas[4, columna];
+                MozoDelDia[4].ventasTotales += Ventas[4, columna];
+                MozoDelDia[4].mozo = dgvGrillaVentas.Rows[4].Cells[0].Value.ToString();
             }
 
-            float[] Mozos = new float[5] {Julio, Esteban, Javier, Gonzalo, Alberto};
+            for (int i = 0; i <= MozoDelDia.GetUpperBound(0); i++)
+            {
 
+                if (MozoDelDia[i].ventasTotales > mayorVentas)
+                {
+                    mayorVentas = MozoDelDia[i].ventasTotales;
+                    mozoMayorVentas = MozoDelDia[i].mozo;
+                }
+            }
 
+            lstResultado.Items.Clear();
+            lstResultado.Items.Add("MOZO DEL DÍA");
+            lstResultado.Items.Add("");
+            lstResultado.Items.Add("Nombre: " + mozoMayorVentas.ToString());
+            lstResultado.Items.Add("Total recaudado: $" + mayorVentas);
+        }
+        private void btnTotales_Click(object sender, EventArgs e)
+        {
+            float ventasTotales = 0;
+
+            foreach (var item in Ventas)
+            {
+                ventasTotales += item;
+            }
+
+            float Comidas = 0;
+            for (int fila = 0; fila < Ventas.GetUpperBound(0); fila++)
+            {
+                Comidas += Ventas[fila, 0];
+            }
+
+            float BSA = 0;
+            for (int fila = 0; fila < Ventas.GetUpperBound(0); fila++)
+            {
+                BSA += Ventas[fila, 1];
+            }
+
+            float BCA = 0;
+            for (int fila = 0; fila < Ventas.GetUpperBound(0); fila++)
+            {
+                BCA += Ventas[fila, 2];
+            }
+
+            float Postres = 0;
+            for (int fila = 0; fila < Ventas.GetUpperBound(0); fila++)
+            {
+                Postres += Ventas[fila, 3];
+            }
+
+            lstResultado.Items.Clear();
+            lstResultado.Items.Add("TOTALES");
+            lstResultado.Items.Add("");
+            lstResultado.Items.Add("Total recaudado en el día: $" + ventasTotales.ToString());
+            lstResultado.Items.Add("Total recaudado en Comidas: $" + Comidas.ToString());
+            lstResultado.Items.Add("Total recaudado en Bebidas sin Alcohol: $" + BSA.ToString());
+            lstResultado.Items.Add("Total recaudado en Bebidas con Alcohol: $" + BCA.ToString());
+            lstResultado.Items.Add("Total recaudado en Postres: $" + Postres.ToString());
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            Random nroAleatorio = new Random();
+
+            for (int columna = 1; columna < dgvGrillaVentas.ColumnCount; columna++)
+            {
+                for (int fila = 0; fila < dgvGrillaVentas.RowCount; fila++)
+                {
+                    dgvGrillaVentas.Rows[fila].Cells[columna].Value = nroAleatorio.Next(0, 20001);
+                }
+            }
+        }
+
+        private void btnLimpiarConsulta_Click(object sender, EventArgs e)
+        {
+            lstResultado.Items.Clear();
+        }
+
+        private void btnLimpiarGrilla_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Está seguro que quiere eliminar la totalidad de los datos ingresados en la grilla?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            switch (result)
+            {
+                case DialogResult.Yes:
+
+                    dgvGrillaVentas.Rows.Clear();
+                    lstResultado.Items.Clear();
+                    mrcConsultas.Enabled = false;
+
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        dgvGrillaVentas.Rows.Add();
+                    }
+                    dgvGrillaVentas.Rows[0].Cells[0].Value = "Julio";
+                    dgvGrillaVentas.Rows[1].Cells[0].Value = "Esteban";
+                    dgvGrillaVentas.Rows[2].Cells[0].Value = "Javier";
+                    dgvGrillaVentas.Rows[3].Cells[0].Value = "Gonzalo";
+                    dgvGrillaVentas.Rows[4].Cells[0].Value = "Alberto";
+                    dgvGrillaVentas.Columns[0].ReadOnly = true;
+                    dgvGrillaVentas.ClearSelection();
+                    break;
+
+                case DialogResult.No:
+                    break;
+            }
+            
         }
 
         private void dgvGrillaVentas_KeyPress(object sender, KeyPressEventArgs e)
         {
-   
+
         }
 
         private void dgvGrillaVentas_Validating(object sender, CancelEventArgs e)
         {
-    
+
         }
-
-
     }
 }
