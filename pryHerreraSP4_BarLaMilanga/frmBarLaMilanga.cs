@@ -87,7 +87,9 @@ namespace pryHerreraSP4_BarLaMilanga
                     }
                 }
                 mrcConsultas.Enabled = true;
-                MessageBox.Show("¡Datos ingresados con éxito!", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnTest.Enabled = false;
+                dgvGrillaVentas.Enabled = false;
+                MessageBox.Show("¡Validación exitosa! Se han cargado todos los datos.", "Notificación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -220,6 +222,8 @@ namespace pryHerreraSP4_BarLaMilanga
                     dgvGrillaVentas.Rows.Clear();
                     lstResultado.Items.Clear();
                     mrcConsultas.Enabled = false;
+                    btnTest.Enabled = true;
+                    dgvGrillaVentas.Enabled = true;
 
                     for (int i = 1; i <= 5; i++)
                     {
