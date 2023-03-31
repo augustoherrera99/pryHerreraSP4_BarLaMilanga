@@ -1,4 +1,4 @@
-#  Registro y Cálculo de Ventas Diarias en Bar 🍺🍔
+#  Registro y cálculo de ventas diarias en bar 🍺🍔
 
 ## Descripción 🏝
 
