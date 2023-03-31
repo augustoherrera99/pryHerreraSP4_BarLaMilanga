@@ -1,8 +1,8 @@
-# Reserva de Cabañas 🏠
+#  Registro y Cálculo de Ventas Diarias en Bar 🍺🍔
 
 ## Descripción 🏝
 
-Aplicación de Windows Forms, programada en C#, que cumple el fin de calcular el precio de reserva de una cabaña, de acuerdo a los diferentes combos, adicionales y forma de pago para elegir.
+Aplicación de Windows Forms que permite ingresar las ventas diarias de cada mozo que atiende en el negocio para luego poder realizar cálculos que muestren la ganancia del día, dinero recaudado por mozo y por categoría.
 
 ## Autor ✒️
 **Augusto Herrera**
