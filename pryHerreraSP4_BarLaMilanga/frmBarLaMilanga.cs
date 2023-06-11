@@ -190,7 +190,7 @@ namespace pryHerreraSP4_BarLaMilanga
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -251,7 +251,8 @@ namespace pryHerreraSP4_BarLaMilanga
 
         private void dgvGrillaVentas_Validating(object sender, CancelEventArgs e)
         {
-
+            int i = 0;
+            i++;
         }
     }
 }
