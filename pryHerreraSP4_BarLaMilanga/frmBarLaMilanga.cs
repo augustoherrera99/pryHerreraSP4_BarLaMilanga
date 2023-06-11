@@ -251,8 +251,7 @@ namespace pryHerreraSP4_BarLaMilanga
 
         private void dgvGrillaVentas_Validating(object sender, CancelEventArgs e)
         {
-            int i = 0;
-            i++;
+
         }
     }
 }
